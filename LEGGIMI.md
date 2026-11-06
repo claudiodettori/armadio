@@ -3,6 +3,12 @@
 App per organizzare l'armadio: capi con foto, outfit pronti e calendario della settimana.
 Funziona su telefono e computer, si installa come un'app e va anche senza connessione.
 
+## Novità della versione 3
+
+- Sul telefono le sezioni sono in una barra in basso, con il tasto **+** al centro per aggiungere un capo (o un outfit, dalla sezione Outfit).
+- Nella scheda del capo: **Scatta** apre direttamente la fotocamera, **Galleria** sceglie una foto salvata; **Salva e aggiungi altro** per inserire tanti capi di fila.
+- I capi sono raggruppati per categoria; le proposte dell'assistente si sfogliano di lato; nuova guida per iniziare quando l'armadio è vuoto.
+
 ## Novità della versione 2
 
 - **Assistente:** nella sezione Settimana, sotto il giorno scelto, trovi tre outfit proposti. Si basano sui capi che metti più spesso, sugli abbinamenti che hai già fatto, sulla stagione e su cosa hai messo ieri. Puoi scegliere l'occasione (lavoro, casual, sera…) e chiedere altre proposte.

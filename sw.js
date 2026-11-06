@@ -1,5 +1,5 @@
 // Armadio: funziona anche offline. Cambia VERSIONE quando aggiorni i file.
-const VERSIONE = "armadio-v2";
+const VERSIONE = "armadio-v3";
 const FILE = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {

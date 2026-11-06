@@ -248,6 +248,108 @@ textarea:focus,input:focus,select:focus{border-color:var(--accent);outline:none}
 .toast.err{background:var(--danger);color:var(--surface)}
 .spin{width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;display:inline-block;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
+/* ---- v3: rifiniture e layout da telefono ---- */
+:root{--shadow:0 1px 2px rgba(20,22,28,.06),0 8px 24px rgba(20,22,28,.08);--radius:14px}
+.btn{min-height:40px;border-radius:10px;transition:background .15s,border-color .15s,filter .15s}
+.btn.primary{box-shadow:0 1px 0 rgba(0,0,0,.08)}
+header.top{align-items:center}
+.brand .meta{margin-top:6px}
+.view-head h2{font-size:28px}
+
+/* barra in basso (telefono) */
+.bottombar{display:none}
+@media (max-width:720px){
+  nav.tabs{display:none}
+  header.top{padding-bottom:10px}
+  .brand h1{font-size:30px}
+  .wrap{padding-block:14px calc(104px + env(safe-area-inset-bottom,0px))}
+  .bottombar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;position:fixed;left:0;right:0;bottom:0;z-index:40;
+    background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);
+    border-top:1px solid var(--line);padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
+  .bottombar a,.bottombar button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:11px;font-weight:500;color:var(--muted);text-align:center;border-radius:10px;-webkit-tap-highlight-color:transparent}
+  .bottombar svg{width:24px;height:24px}
+  .bottombar [aria-current="page"]{color:var(--accent)}
+  .bottombar a:focus-visible,.bottombar button:focus-visible{outline:2px solid var(--accent)}
+  .bottombar .addbtn{justify-self:center;width:54px;height:54px;padding:0;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 40%,transparent);transform:translateY(-10px)}
+  .bottombar .addbtn svg{width:26px;height:26px}
+  .toast{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+  .btn{min-height:44px}
+  .view-head{margin-bottom:12px}
+  .view-head h2{font-size:26px}
+  .view-head > .btn.primary{display:none}
+}
+
+/* selettore data come icona */
+.datebtn{position:relative;overflow:hidden}
+.datebtn input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0;margin:0}
+.weeknav .range{font-size:13px;color:var(--ink);font-weight:500}
+
+/* benvenuto */
+.welcome{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow)}
+.welcome h3{font-family:var(--display);font-weight:500;font-size:26px;margin:4px 0 14px;text-wrap:balance}
+.steps{margin:0 0 18px;padding:0;list-style:none;counter-reset:st;display:grid;gap:12px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:start;font-size:14px;color:var(--muted)}
+.steps li::before{content:counter(st);width:30px;height:30px;border-radius:50%;background:var(--tape);color:var(--tape-ink);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:16px}
+.steps b{display:block;color:var(--ink);font-weight:600;margin-bottom:1px}
+
+/* giorno: scheda unica */
+.day{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);margin-top:18px}
+.day .collage{border:0;background:var(--surface-2)}
+.day .collage.empty{border:0;background:var(--surface-2)}
+.piece-list li{grid-template-columns:38px minmax(0,1fr) auto;padding:7px 0}
+.piece-list .thumb{width:38px;height:48px}
+@media (max-width:780px){
+  .day{gap:14px}
+  .day .collage{aspect-ratio:16/11}
+  .day .collage.empty{aspect-ratio:auto;padding:22px 16px}
+}
+
+/* righe di chip scorrevoli sul telefono */
+@media (max-width:720px){
+  .chips.scroll{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding:2px 16px 4px;scroll-padding-inline:16px}
+  .chips.scroll::-webkit-scrollbar{display:none}
+  .chips.scroll .chip{flex:none}
+  .filters{gap:8px}
+  .filters .search{flex-basis:100%;max-width:none}
+  .filters.selects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .filters.selects .search{grid-column:1/-1}
+  .filters select{width:100%;font-size:13px;padding:8px 6px}
+}
+
+/* assistente: carosello sul telefono */
+.assist{border-top:0;margin-top:26px;padding-top:0}
+.pcard{box-shadow:var(--shadow);border-radius:var(--radius)}
+@media (max-width:720px){
+  .pgrid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:2px 16px 10px;scroll-padding-inline:16px;scrollbar-width:none}
+  .pgrid::-webkit-scrollbar{display:none}
+  .pcard{scroll-snap-align:start}
+  .pcard .collage{aspect-ratio:16/11}
+}
+
+/* capi raggruppati per categoria */
+.group{display:flex;align-items:baseline;gap:8px;margin:26px 0 12px;font-family:var(--display);font-weight:500;font-size:21px}
+.group:first-of-type{margin-top:6px}
+.group span{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.06em}
+.tag{border-radius:12px}
+.tag:active{transform:scale(.98)}
+
+/* statistiche */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+
+/* schede (pannelli) */
+.sheet{box-shadow:0 -8px 40px rgba(0,0,0,.18)}
+@media (max-width:719px){
+  .sheet-head{padding-top:22px}
+  .sheet-head::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:2px;background:var(--line)}
+  .drop{aspect-ratio:4/3;max-height:280px}
+  .sheet-foot .right{flex:1}
+  .sheet-foot .right .btn.primary{flex:1;justify-content:center}
+}
+.photo-actions .btn svg{width:18px;height:18px}
+@media (hover:hover) and (pointer:fine){.only-touch{display:none!important}}
+.foot-split{display:flex;gap:8px;flex-wrap:wrap;width:100%;justify-content:flex-end}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>
@@ -270,6 +372,13 @@ textarea:focus,input:focus,select:focus{border-color:var(--accent);outline:none}
   <div class="notice" id="notice" hidden></div>
   <main id="main"></main>
 </div>
+<nav class="bottombar" aria-label="Sezioni">
+  <a href="#settimana" data-tab="settimana"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/></svg><span>Settimana</span></a>
+  <a href="#capi" data-tab="capi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7.5a2 2 0 1 1 2-2"/><path d="M12 7.5v1.2L3 15.3a1.4 1.4 0 0 0 .8 2.5h16.4a1.4 1.4 0 0 0 .8-2.5L12 8.7"/></svg><span>Capi</span></a>
+  <button class="addbtn" data-act="quickAdd" aria-label="Aggiungi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+  <a href="#outfit" data-tab="outfit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5l9 4.5 9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg><span>Outfit</span></a>
+  <button data-act="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg><span>Altro</span></button>
+</nav>
 <div id="sheetRoot"></div>
 <div id="toastRoot" aria-live="polite"></div>
 
@@ -477,7 +586,7 @@ function assistantHTML(k){
   h+='<p>'+(P.H.days>=5?"Basate su "+P.H.days+" giorni registrati: i capi che metti più spesso, gli abbinamenti che ti piacciono, la stagione e quello che hai messo ieri.":"Per ora le proposte usano i capi adatti "+STAG_ART[P.stag]+" e i tuoi outfit salvati. Registra cosa indossi ogni giorno: più giorni registri, più le proposte ti somigliano.")+'</p></div>'+
      (P.list.length?'<button class="btn" data-act="propMore">Altre proposte</button>':'')+'</div>';
   const occs=OCCASIONI.filter(o=>Object.values(S.capi).some(c=>c.occasione===o));
-  if(occs.length)h+='<div class="chips" role="group" aria-label="Occasione">'+[["","Qualsiasi"],...occs.map(o=>[o,o])].map(([v,l])=>'<button class="chip" data-act="propOcc" data-v="'+v+'" aria-pressed="'+(occ===v)+'">'+l+'</button>').join("")+'</div>';
+  if(occs.length)h+='<div class="chips scroll" role="group" aria-label="Occasione">'+[["","Qualsiasi"],...occs.map(o=>[o,o])].map(([v,l])=>'<button class="chip" data-act="propOcc" data-v="'+v+'" aria-pressed="'+(occ===v)+'">'+l+'</button>').join("")+'</div>';
   if(!P.list.length)return h+'<p class="hint">Per comporre un outfit servono almeno una maglia o camicia e un paio di pantaloni o una gonna, oppure un abito.</p></section>';
   h+='<div class="pgrid">'+P.list.map((p,i)=>'<article class="pcard">'+collage({capi:p.ids})+'<div class="pbody"><h4>'+esc(p.nome)+'</h4><ul class="reasons">'+p.reasons.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><div class="oact"><button class="btn primary" data-act="propUse" data-i="'+i+'">'+(k===t?"Lo metto oggi":"Pianifica")+'</button>'+(p.src?'':'<button class="btn ghost" data-act="propSave" data-i="'+i+'">Salva come outfit</button>')+'</div></div></article>').join("")+'</div>';
   return h+'</section>';
@@ -489,6 +598,8 @@ const ICON={
  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
  left:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
  right:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+ camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+ image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m20.5 16-5-5-9 8.5"/></svg>',
  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>'
 };
@@ -538,10 +649,10 @@ async function compress(file,max,q){
 const main=document.getElementById("main");
 function isLoading(){return S.mode==="loading"||(S.mode==="db"&&!S.got)}
 function render(){
-  document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.tab===S.tab?"page":"false"));
+  document.querySelectorAll("[data-tab]").forEach(a=>a.setAttribute("aria-current",a.dataset.tab===S.tab?"page":"false"));
   const nc=Object.keys(S.capi).length,no=Object.keys(S.outfit).length;
   const nd=Object.keys(S.giorni).filter(k=>k>=todayKey()).length;
-  document.getElementById("meta").textContent=isLoading()?"Caricamento…":code(nc).replace("N° ","")+" capi · "+String(no).padStart(2,"0")+" outfit · "+nd+" giorni in programma";
+  document.getElementById("meta").textContent=isLoading()?"Caricamento…":nc+(nc===1?" capo":" capi")+" · "+no+" outfit"+(nd?" · "+nd+(nd===1?" giorno":" giorni")+" in programma":"");
   if(S.tab==="capi")renderCapi();else if(S.tab==="outfit")renderOutfit();else renderSettimana();
 }
 function wbtn(label,attrs,cls){return S.canWrite?'<button class="btn '+(cls||"")+'" '+attrs+'>'+label+'</button>':""}
@@ -554,8 +665,13 @@ function renderSettimana(){
    '<span class="range">'+shortDate(ws)+' – '+shortDate(end)+' '+parseKey(end).getFullYear()+'</span>'+
    '<button class="btn ghost" data-act="week" data-d="7" aria-label="Settimana successiva">'+ICON.right+'</button>'+
    (ws!==weekStart(t)?'<button class="btn" data-act="today">Oggi</button>':'')+
-   '<label class="sr" for="goDate">Vai a una data</label><input type="date" id="goDate" value="'+S.sel+'" style="width:auto">'+
+   '<span class="btn ghost datebtn" title="Vai a una data">'+ICON.cal+'<input type="date" id="goDate" value="'+S.sel+'" aria-label="Vai a una data"></span>'+
    '</div></div>';
+  if(!isLoading()&&!Object.keys(S.capi).length&&S.canWrite)h+='<section class="welcome"><div class="eyebrow">Per iniziare</div><h3>Riempi il tuo armadio digitale</h3><ol class="steps">'+
+   '<li><div><b>Fotografa i tuoi capi</b>Tocca + e scatta una foto: bastano nome, categoria e colore.</div></li>'+
+   '<li><div><b>Componi gli outfit</b>Abbina i capi e salva le combinazioni che ti piacciono.</div></li>'+
+   '<li><div><b>Segna cosa indossi</b>Ogni giorno l\'assistente impara e ti propone outfit su misura.</div></li></ol>'+
+   '<div class="set-row"><button class="btn primary" data-act="newItem">'+ICON.camera+' Aggiungi il primo capo</button><button class="btn" data-act="loadEx">Prova con gli esempi</button></div></section>';
   h+='<div class="tape" role="group" aria-label="Giorni della settimana">'+days.map((k,i)=>{
     const r=dayRec(k),has=!!(r&&r.ids.length);
     return '<button data-act="sel" data-k="'+k+'" aria-pressed="'+(k===S.sel)+'" aria-label="'+esc(longDate(k))+(has?(r.worn?", indossato: ":", in programma: ")+esc(r.nome):", nessun outfit")+'">'+
@@ -580,7 +696,7 @@ function renderSettimana(){
       h+='</div>';
     }
   } else {
-    h+='<div class="day-title">'+(past?"Nessun outfit registrato":"Ancora da decidere")+'</div></div>';
+    h+='</div>';
   }
   h+='<label class="fl" for="dayNote">Nota per la giornata<textarea id="dayNote" placeholder="Es. riunione alle 10, pioggia prevista, cena fuori…" '+(S.canWrite?'':'readonly')+'>'+esc(g?.nota||"")+'</textarea></label>';
   h+='</div></div>';
@@ -604,13 +720,18 @@ function renderCapi(){
   if(!all.length){
     main.innerHTML=h+'<div class="empty-state"><h3>L\'armadio è vuoto</h3><p>'+(isLoading()?"Sto caricando i tuoi capi…":"Aggiungi il primo capo: scatta o carica una foto, scegli categoria, colore e stagione.")+'</p>'+(!isLoading()?'<div class="set-row" style="justify-content:center">'+wbtn(ICON.plus+" Aggiungi il primo capo",'data-act="newItem"',"primary")+wbtn("Prova con capi di esempio",'data-act="loadEx"')+'</div>':"")+'</div></section>';return;
   }
-  h+='<div class="filters"><div class="chips" role="group" aria-label="Categoria">'+["Tutti",...CATEGORIE].map(c=>'<button class="chip" data-act="cat" data-v="'+c+'" aria-pressed="'+(S.cat===c)+'">'+c+' <span class="n">'+(c==="Tutti"?all.length:(counts[c]||0))+'</span></button>').join("")+'</div></div>';
-  h+='<div class="filters"><input type="search" class="search" id="q" placeholder="Cerca per nome, marca, colore…" value="'+esc(S.q)+'" aria-label="Cerca capi">'+
-   '<select id="fStag" aria-label="Stagione"><option value="">Tutte le stagioni</option>'+STAGIONI.map(s=>'<option'+(S.stag===s?" selected":"")+'>'+s+'</option>').join("")+'</select>'+
-   '<select id="fOcc" aria-label="Occasione"><option value="">Tutte le occasioni</option>'+OCCASIONI.map(s=>'<option'+(S.occ===s?" selected":"")+'>'+s+'</option>').join("")+'</select>'+
-   '<select id="fSort" aria-label="Ordina">'+[["cat","Per categoria"],["piu","Più indossati"],["meno","Meno indossati"],["nuovi","Ultimi aggiunti"]].map(([v,l])=>'<option value="'+v+'"'+(S.sort===v?" selected":"")+'>'+l+'</option>').join("")+'</select></div>';
+  h+='<div class="filters"><div class="chips scroll" role="group" aria-label="Categoria">'+["Tutti",...CATEGORIE].map(c=>'<button class="chip" data-act="cat" data-v="'+c+'" aria-pressed="'+(S.cat===c)+'">'+c+' <span class="n">'+(c==="Tutti"?all.length:(counts[c]||0))+'</span></button>').join("")+'</div></div>';
+  h+='<div class="filters selects"><input type="search" class="search" id="q" placeholder="Cerca per nome, marca, colore…" value="'+esc(S.q)+'" aria-label="Cerca capi">'+
+   '<select id="fStag" aria-label="Stagione"><option value="">Stagione</option>'+STAGIONI.map(s=>'<option'+(S.stag===s?" selected":"")+'>'+s+'</option>').join("")+'</select>'+
+   '<select id="fOcc" aria-label="Occasione"><option value="">Occasione</option>'+OCCASIONI.map(s=>'<option'+(S.occ===s?" selected":"")+'>'+s+'</option>').join("")+'</select>'+
+   '<select id="fSort" aria-label="Ordina">'+[["cat","Categoria"],["piu","Più indossati"],["meno","Meno indossati"],["nuovi","Più recenti"]].map(([v,l])=>'<option value="'+v+'"'+(S.sort===v?" selected":"")+'>'+l+'</option>').join("")+'</select></div>';
   if(!list.length)h+='<div class="empty-state"><h3>Nessun capo trovato</h3><p>Prova a cambiare categoria, stagione o testo di ricerca.</p></div>';
-  else h+='<div class="grid">'+list.map(c=>'<button class="tag" data-act="editItem" data-id="'+c.id+'" aria-label="'+esc(c.nome)+'">'+(c.esempio?'<span class="badge">Esempio</span>':'')+thumb(c)+'<div class="tmeta"><div class="tname">'+esc(c.nome)+'</div><div class="trow"><span style="display:flex;gap:5px;align-items:center;min-width:0">'+swatch(c)+esc(c.categoria)+'</span><span class="code">'+code(c.num)+'</span></div><div class="trow"><span>'+(wc[c.id]?"Indossato "+volte(wc[c.id])+" · "+shortDate(lw[c.id]):"Mai indossato")+'</span></div></div></button>').join("")+'</div>';
+  else{
+    const tag=c=>'<button class="tag" data-act="editItem" data-id="'+c.id+'" aria-label="'+esc(c.nome)+'">'+(c.esempio?'<span class="badge">Esempio</span>':'')+thumb(c)+'<div class="tmeta"><div class="tname">'+esc(c.nome)+'</div><div class="trow"><span style="display:flex;gap:5px;align-items:center;min-width:0">'+swatch(c)+esc(c.colore||c.categoria)+'</span><span class="code">'+code(c.num)+'</span></div><div class="trow"><span>'+(wc[c.id]?"Indossato "+volte(wc[c.id])+" · "+shortDate(lw[c.id]):"Mai indossato")+'</span></div></div></button>';
+    if(S.sort==="cat"&&S.cat==="Tutti"){
+      for(const cat of CATEGORIE){const g=list.filter(c=>c.categoria===cat);if(!g.length)continue;h+='<h3 class="group">'+cat+' <span>'+g.length+'</span></h3><div class="grid">'+g.map(tag).join("")+'</div>'}
+    } else h+='<div class="grid">'+list.map(tag).join("")+'</div>';
+  }
   main.innerHTML=h+'</section>';
 }
 
@@ -645,9 +766,9 @@ function itemSheet(){
   const d=sheet.d,isNew=!sheet.id;
   const prev=sheet.preview||(sheet.removePhoto?"":photoSrc(d));
   let h=head(isNew?"Nuovo capo":"Modifica capo")+'<div class="sheet-body"><div class="form2"><div>'+
-   '<label class="drop" id="drop" for="fFoto">'+(prev?'<img src="'+esc(prev)+'" alt="Foto del capo">':'<span class="hint"><strong>Aggiungi una foto</strong>Tocca per scegliere, trascina un\'immagine o incollala</span>')+'</label>'+
-   '<input type="file" id="fFoto" accept="image/*" class="sr">'+
-   '<div class="photo-actions">'+(prev?'<label class="btn" for="fFoto">Cambia foto</label><button class="btn danger" data-act="rmPhoto">Rimuovi</button>':'')+'</div></div>'+
+   '<label class="drop" id="drop" for="fFoto">'+(prev?'<img src="'+esc(prev)+'" alt="Foto del capo">':'<span class="hint"><strong>Aggiungi una foto</strong>Scatta o scegli una foto. Dal computer puoi anche trascinarla qui o incollarla</span>')+'</label>'+
+   '<input type="file" id="fFoto" accept="image/*" class="sr"><input type="file" id="fCam" accept="image/*" capture="environment" class="sr">'+
+   '<div class="photo-actions"><label class="btn only-touch" for="fCam">'+ICON.camera+(prev?' Rifai foto':' Scatta')+'</label><label class="btn" for="fFoto">'+ICON.image+(prev?' Cambia':' Galleria')+'</label>'+(prev?'<button class="btn danger" data-act="rmPhoto">Rimuovi</button>':'')+'</div></div>'+
    '<div class="fields">'+(isNew?'':'<p class="hint full">'+usageText(sheet.id)+'</p>')+
    '<label class="fl full" for="fNome">Nome<input type="text" id="fNome" value="'+esc(d.nome||"")+'" placeholder="Es. Maglione girocollo in lana" data-autofocus></label>'+
    '<label class="fl" for="fCat">Categoria<select id="fCat">'+CATEGORIE.map(c=>'<option'+(d.categoria===c?" selected":"")+'>'+c+'</option>').join("")+'</select></label>'+
@@ -659,7 +780,7 @@ function itemSheet(){
    '<label class="fl full" for="fNote">Note<textarea id="fNote" placeholder="Lavaggio, abbinamenti, dove l\'hai comprato…">'+esc(d.note||"")+'</textarea></label>'+
    '</div></div></div>';
   h+='<div class="sheet-foot">'+(isNew?'':sheet.confirmDel?'<div class="confirm"><span>Eliminare il capo'+(sheet.usedIn?" (presente in "+sheet.usedIn+" outfit)":"")+'?</span><button class="btn danger solid" data-act="delItemYes">Elimina</button><button class="btn ghost" data-act="delItemNo">Annulla</button></div>':'<button class="btn danger" data-act="delItem">Elimina capo</button>')+
-   '<div class="right"><button class="btn ghost" data-act="close">Annulla</button><button class="btn primary" data-act="saveItem" '+(sheet.busy?"disabled":"")+'>'+(sheet.busy?'<span class="spin"></span> Salvataggio…':"Salva capo")+'</button></div></div>';
+   '<div class="right">'+(isNew?'<button class="btn" data-act="saveItemMore" '+(sheet.busy?"disabled":"")+'>Salva e aggiungi altro</button>':'<button class="btn ghost" data-act="close">Annulla</button>')+'<button class="btn primary" data-act="saveItem" '+(sheet.busy?"disabled":"")+'>'+(sheet.busy?'<span class="spin"></span> Salvataggio…':"Salva capo")+'</button></div></div>';
   return h;
 }
 function usageText(id){const n=wornCount()[id]||0,l=lastWorn()[id];return n?"Indossato "+volte(n)+" · l'ultima "+longDate(l).replace(/^./,c=>c.toLowerCase()):"Non l'hai ancora indossato"}
@@ -676,7 +797,7 @@ async function setPhoto(file){
     drawSheet();
   }catch(e){toast("Impossibile leggere questa immagine: prova con JPG o PNG",true)}
 }
-async function saveItem(){
+async function saveItem(more){
   readItemFields();const d=sheet.d;
   if(!d.nome){toast("Dai un nome al capo",true);document.getElementById("fNome")?.focus();return}
   sheet.busy=true;drawSheet();
@@ -689,7 +810,9 @@ async function saveItem(){
     else if(!sheet.removePhoto){if(old?.foto)doc.foto=old.foto;oldAsset=null}
     await putDoc("capi",id,doc);
     if(oldAsset&&oldAsset!==doc.foto){delFoto(oldAsset).catch(()=>{})}
-    toast(sheet.id?"Capo aggiornato":"Capo aggiunto all'armadio");closeSheet();
+    const wasNew=!sheet.id,cat=doc.categoria;
+    toast(wasNew?"«"+doc.nome+"» aggiunto all'armadio":"Capo aggiornato");closeSheet();
+    if(more&&wasNew)openSheet({type:"item",d:{categoria:cat,stagioni:(doc.stagioni||[]).slice()}});
   }catch(e){sheet.busy=false;drawSheet();toast(errMsg(e),true)}
 }
 async function deleteItem(){
@@ -914,7 +1037,9 @@ document.addEventListener("click",async e=>{
     case "color":readItemFields();sheet.d.colore=t.dataset.v;drawSheet();root.querySelector('[data-act="color"][data-v="'+t.dataset.v+'"]')?.focus();break;
     case "season":{readItemFields();const s=sheet.d.stagioni||(sheet.d.stagioni=[]);const v=t.dataset.v;sheet.d.stagioni=s.includes(v)?s.filter(x=>x!==v):[...s,v];drawSheet();root.querySelector('[data-act="season"][data-v="'+v+'"]')?.focus();break}
     case "rmPhoto":e.preventDefault();readItemFields();sheet.blob=null;sheet.small=null;sheet.preview="";sheet.removePhoto=true;drawSheet();break;
-    case "saveItem":saveItem();break;
+    case "saveItem":saveItem(false);break;
+    case "saveItemMore":saveItem(true);break;
+    case "quickAdd":if(S.tab==="outfit")openSheet({type:"outfit",cat:"Tutti",d:{capi:[]}});else openSheet({type:"item",d:{categoria:S.tab==="capi"&&S.cat!=="Tutti"?S.cat:"Maglie",stagioni:[]}});break;
     case "delItem":readItemFields();sheet.confirmDel=true;sheet.usedIn=Object.values(S.outfit).filter(o=>(o.capi||[]).includes(sheet.id)).length;drawSheet();break;
     case "delItemNo":sheet.confirmDel=false;drawSheet();break;
     case "delItemYes":deleteItem();break;
@@ -933,7 +1058,7 @@ document.addEventListener("click",async e=>{
 });
 document.addEventListener("change",e=>{
   const id=e.target.id;
-  if(id==="fFoto"){setPhoto(e.target.files[0]);e.target.value=""}
+  if(id==="fFoto"||id==="fCam"){setPhoto(e.target.files[0]);e.target.value=""}
   else if(id==="impFile"){const f=e.target.files[0];e.target.value="";if(f)readBackup(f)}
   else if(id==="fStag"){S.stag=e.target.value;render()}
   else if(id==="fOcc"){S.occ=e.target.value;render()}
@@ -946,6 +1071,7 @@ document.addEventListener("change",e=>{
     (v||g?.outfit||(g?.capi&&g.capi.length)?putDoc("giorni",k,{...(g||{}),outfit:g?.outfit||"",nota:v}):delDoc("giorni",k)).then(()=>toast("Nota salvata")).catch(err=>toast(errMsg(err),true))}
 });
 document.addEventListener("input",e=>{if(e.target.id==="q"){S.q=e.target.value;const pos=e.target.selectionStart;render();const q=document.getElementById("q");q.focus();try{q.setSelectionRange(pos,pos)}catch(_){}}});
+document.addEventListener("click",e=>{if(e.target.id==="goDate"){try{e.target.showPicker()}catch(_){}}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&sheet)closeSheet()});
 document.addEventListener("error",e=>{if(e.target.tagName==="IMG"&&e.target.closest(".thumb"))e.target.hidden=true},true);
 document.addEventListener("dragover",e=>{const d=e.target.closest&&e.target.closest("#drop");if(d){e.preventDefault();d.classList.add("over")}});
