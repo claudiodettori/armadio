@@ -11,15 +11,9 @@ Funziona su telefono e computer, si installa come un'app e va anche senza connes
 
 ## Dove è pubblicata
 
-Il codice sta su **GitHub** e il sito è servito da **Cloudflare Pages**, collegato al repository:
-ogni volta che i file su GitHub cambiano, Cloudflare ripubblica il sito da solo in un minuto circa.
-
-**Collegare Cloudflare la prima volta**
-1. Accedi a https://dash.cloudflare.com (account gratuito).
-2. Vai su **Workers e Pages** → **Crea** → scheda **Pages** → **Importa un repository Git** (o "Connect to Git").
-3. Autorizza GitHub e scegli il repository `armadio`.
-4. Impostazioni di build: preset **Nessuno**, comando di build **vuoto**, directory di output **/**.
-5. **Salva e distribuisci**. L'indirizzo sarà del tipo `https://armadio.pages.dev`.
+- **Indirizzo dell'app:** https://armadio.cladettori27.workers.dev
+- **Codice:** https://github.com/claudiodettori/armadio
+- **Hosting:** Cloudflare (Workers), collegato al repository: ogni volta che i file su GitHub cambiano, Cloudflare ripubblica il sito da solo in un minuto circa.
 
 **Aggiornare l'app**: basta sostituire i file nel repository GitHub (anche dal sito, con "Add file → Upload files").
 Quando cambi i file, cambia anche `VERSIONE` in `sw.js` (es. da `armadio-v2` a `armadio-v3`), così il telefono scarica subito la nuova versione.
